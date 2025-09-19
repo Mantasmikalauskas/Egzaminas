@@ -1,0 +1,1 @@
+import API from './index'; export const list=()=>API.get('/cars'); export const get=(id)=>API.get(`/cars/${id}`);

@@ -1,0 +1,2 @@
+import React,{useEffect,useState} from 'react'; import { useParams } from 'react-router-dom'; import { get } from '../api/cars';
+export default function CarDetails(){ const {id}=useParams(); const [car,setCar]=useState(null); useEffect(()=>{ get(id).then(r=>setCar(r.data)).catch(()=>{}); },[id]); if(!car) return <p>Loading...</p>; return (<div><h2>{car.make} {car.model}</h2><p>{car.description}</p><p>Price: {car.pricePerDay}</p></div>); }

@@ -1,0 +1,2 @@
+import React,{useEffect,useState} from 'react'; import { list } from '../api/cars'; import { Link } from 'react-router-dom';
+export default function Home(){ const [cars,setCars]=useState([]); useEffect(()=>{ list().then(r=>setCars(r.data)).catch(()=>{}); },[]); return (<div><h1>Cars</h1><div className='grid'>{cars.map(c=>(<div key={c._id} className='card'><h3>{c.make} {c.model}</h3><p>Price/day: {c.pricePerDay}</p><Link to={`/cars/${c._id}`}>Details</Link></div>))}</div></div>); }

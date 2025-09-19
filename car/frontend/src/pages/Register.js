@@ -1,0 +1,4 @@
+import React,{useState,useContext} from 'react'; import { useNavigate } from 'react-router-dom'; import { AuthContext } from '../context/AuthContext';
+export default function Register(){ const [name,setName]=useState(''); const [email,setEmail]=useState(''); const [password,setPassword]=useState(''); const {register}=useContext(AuthContext); const nav=useNavigate();
+const submit=async e=>{ e.preventDefault(); try{ await register({name,email,password}); nav('/'); }catch(err){ alert(err.response?.data?.message||err.message); } };
+return (<form onSubmit={submit} className='form'><h2>Register</h2><label>Name<input value={name} onChange={e=>setName(e.target.value)} /></label><label>Email<input value={email} onChange={e=>setEmail(e.target.value)} /></label><label>Password<input type='password' value={password} onChange={e=>setPassword(e.target.value)} /></label><button>Register</button></form>); }

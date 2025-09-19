@@ -1,0 +1,2 @@
+import React,{useEffect,useState} from 'react'; import API from '../api';
+export default function Reservations(){ const [items,setItems]=useState([]); useEffect(()=>{ API.get('/reservations/me',{ headers:{ Authorization: 'Bearer '+localStorage.getItem('token') } }).then(r=>setItems(r.data)).catch(()=>{}); },[]); return (<div><h2>My Reservations</h2><ul>{items.map(i=> (<li key={i._id}>{i.car?.make} {i.car?.model} - {new Date(i.startDate).toLocaleDateString()}</li>))}</ul></div>); }
