@@ -1,0 +1,1 @@
+import express from 'express'; import { stats } from '../controllers/adminController.js'; import { protect, adminOnly } from '../middleware/auth.js'; const r = express.Router(); r.get('/stats', protect, adminOnly, stats); export default r;
