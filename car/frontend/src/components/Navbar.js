@@ -1,2 +1,0 @@
-import React,{useContext} from 'react'; import { Link } from 'react-router-dom'; import { AuthContext } from '../context/AuthContext';
-export default function Navbar(){ const {user,logout}=useContext(AuthContext); return (<header className='nav'><div className='brand'><Link to='/'>CarRent</Link></div><nav><Link to='/'>Cars</Link>{user && <Link to='/reservations'>My Reservations</Link>}{!user ? <Link to='/login'>Login</Link> : <button onClick={logout}>Logout</button>}</nav></header>); }

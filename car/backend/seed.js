@@ -1,0 +1,4 @@
+// Run: node seed.js to create sample cars and admin
+import mongoose from 'mongoose'; import dotenv from 'dotenv'; dotenv.config();
+import connectDB from './src/config/db.js'; import Car from './src/models/Car.js'; import User from './src/models/User.js';
+async function run(){ await connectDB(process.env.MONGO_URI||'mongodb://localhost:27017/mern_car_rental'); await Car.deleteMany({}); await Car.insertMany([{make:'Toyota',model:'Corolla',year:2018,carClass:'EKONOMINĖ KLASĖ',pricePerDay:30,description:'Automobilio aprašymas',image:''},{make:'Honda',model:'Civic',year:2019,carClass:'VIDUTINĖ KLASĖ',pricePerDay:40,description:'Automobilio aprašymas',image:''}]); await User.deleteMany({}); await User.create({name:'Admin',email:'admin@local',password:'adminpw',role:'admin'}); console.log('seed done'); process.exit(); } run();

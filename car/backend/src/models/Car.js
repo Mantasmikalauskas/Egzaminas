@@ -1,3 +1,5 @@
 import mongoose from 'mongoose';
-const carSchema = new mongoose.Schema({ make:String, model:String, year:Number, seats:Number, pricePerDay:Number, status:{type:String,enum:['draft','published','reserved'],default:'draft'}, description:String, images:[String] },{timestamps:true});
+const carSchema = new mongoose.Schema({
+  make:String, model:String, year:Number, carClass:String, pricePerDay:Number, status:{type:String,enum:['draft','published','reserved'],default:'published'}, description:String, image:String
+},{timestamps:true});
 export default mongoose.model('Car', carSchema);

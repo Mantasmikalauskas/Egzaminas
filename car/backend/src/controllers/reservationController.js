@@ -1,7 +1,16 @@
 import Reservation from '../models/Reservation.js'; import Car from '../models/Car.js';
-export const createReservation=async(req,res)=>{ const {carId,startDate,endDate}=req.body; const car=await Car.findById(carId); if(!car) return res.status(404).json({message:'Car not found'}); const overlap=await Reservation.findOne({ car:carId, status:{ $in:['pending','confirmed'] }, $or:[ { startDate:{ $lte:new Date(endDate) }, endDate:{ $gte:new Date(startDate) } } ] }); if(overlap) return res.status(400).json({message:'Not available'}); const days=Math.ceil((new Date(endDate)-new Date(startDate))/(1000*60*60*24))+1; const totalPrice=(car.pricePerDay||0)*days; const r=await Reservation.create({ user:req.user._id, car:car._id, startDate:new Date(startDate), endDate:new Date(endDate), totalPrice }); res.status(201).json(r); };
-export const updateReservation=async(req,res)=>{ const reservation=await Reservation.findById(req.params.id); if(!reservation) return res.status(404).json({message:'Not found'}); if(!reservation.user.equals(req.user._id) && req.user.role!=='admin') return res.status(403).json({message:'Not allowed'}); Object.assign(reservation, req.body); await reservation.save(); res.json(reservation); };
-export const cancelReservation=async(req,res)=>{ const reservation=await Reservation.findById(req.params.id); if(!reservation) return res.status(404).json({message:'Not found'}); if(!reservation.user.equals(req.user._id) && req.user.role!=='admin') return res.status(403).json({message:'Not allowed'}); reservation.status='cancelled'; await reservation.save(); res.json({message:'Cancelled'}); };
-export const getUserReservations=async(req,res)=>{ const items=await Reservation.find({user:req.user._id}).populate('car'); res.json(items); };
-export const getAllReservations=async(req,res)=>{ const items=await Reservation.find().populate('car').populate('user'); res.json(items); };
-export const changeReservationStatus=async(req,res)=>{ const {status}=req.body; if(!['pending','confirmed','cancelled'].includes(status)) return res.status(400).json({message:'Invalid'}); const reservation=await Reservation.findByIdAndUpdate(req.params.id,{status},{new:true}).populate('car').populate('user'); if(!reservation) return res.status(404).json({message:'Not found'}); res.json(reservation); };
+export const createReservation = async (req,res)=>{
+  const {carId,startDate,endDate} = req.body;
+  const car = await Car.findById(carId);
+  if(!car) return res.status(404).json({message:'Car not found'});
+  const overlap = await Reservation.findOne({car:carId, status:{ $in:['pending','reserved'] }, $or:[ { startDate:{ $lte: new Date(endDate) }, endDate:{ $gte: new Date(startDate) } } ]});
+  if(overlap) return res.status(400).json({message:'Not available'});
+  const days = Math.ceil((new Date(endDate)-new Date(startDate))/(1000*60*60*24))+1;
+  const total = (car.pricePerDay||0)*days;
+  const r = await Reservation.create({ user: req.user._id, car: car._id, startDate:new Date(startDate), endDate:new Date(endDate), totalPrice: total, status:'reserved' });
+  car.status = 'reserved'; await car.save();
+  res.status(201).json(r);
+};
+export const getMy = async (req,res)=>{ const items = await Reservation.find({user:req.user._id}).populate('car'); res.json(items); };
+export const getAll = async (req,res)=>{ const items = await Reservation.find().populate('car').populate('user'); res.json(items); };
+export const changeStatus = async (req,res)=>{ const r = await Reservation.findByIdAndUpdate(req.params.id, {status: req.body.status}, {new:true}); res.json(r); };

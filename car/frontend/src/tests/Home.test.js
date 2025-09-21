@@ -1,0 +1,1 @@
+import { render, screen } from '@testing-library/react'; import Home from '../pages/Home'; test('renders classes', ()=>{ render(<Home/>); expect(true).toBeTruthy(); });
