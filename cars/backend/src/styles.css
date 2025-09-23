@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #e9fbe9; /* very light green */
+}
+
+.header {
+  background-color: #a5d6a7; /* darker green */
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-weight: bold;
+  color: grey;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nav-links a, .nav-links button {
+  margin-left: 10px;
+  text-decoration: none;
+  color: black;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #f0f0f0; /* light grey */
+  padding: 10px;
+  position: fixed;
+  top: 60px;
+  bottom: 40px;
+  overflow-y: auto;
+}
+
+.main {
+  margin-left: 220px;
+  padding: 20px;
+}
+
+.footer {
+  background-color: #a5d6a7;
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.car-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  display: inline-block;
+  width: 250px;
+  vertical-align: top;
+}
+
+.car-card img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.btn.small {
+  font-size: 12px;
+  padding: 3px 6px;
+}

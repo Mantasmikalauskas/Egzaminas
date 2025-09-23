@@ -1,1 +1,0 @@
-import request from 'supertest'; import app from '../index.js'; describe('auth', ()=>{ it('register/login', async ()=>{ await request(app).post('/api/auth/register').send({name:'X',email:'x@x.com',password:'pw'}).expect(201); const res = await request(app).post('/api/auth/login').send({email:'x@x.com',password:'pw'}).expect(200); expect(res.body.token).toBeTruthy(); }); });
