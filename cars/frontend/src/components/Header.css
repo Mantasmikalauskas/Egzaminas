@@ -1,0 +1,58 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #e0e0e0;
+  border-bottom: 2px solid #b0b0b0;
+}
+
+.header-left {
+  display: flex;
+  gap: 20px;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 20px;
+  color: #333;
+  text-decoration: none;
+}
+
+.company {
+  font-size: 16px;
+  color: #666;
+  text-decoration: none;
+}
+
+.header-right {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  background-color: #ccc;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #333;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s, transform 0.2s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #bbb;
+  transform: translateY(-2px);
+}
+
+.logout {
+  background-color: #d9534f;
+  color: white;
+}
+
+.logout:hover {
+  background-color: #c9302c;
+}
