@@ -1,0 +1,1 @@
+import React from 'react'; import Header from '../components/Header'; import Sidebar from '../components/Sidebar'; export default function Home(){ return (<div><Header /><Sidebar user={null} /><div style={{marginLeft:280,padding:20}}>Home (run seed to see demo)</div></div>); }

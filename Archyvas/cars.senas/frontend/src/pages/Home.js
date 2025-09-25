@@ -1,0 +1,1 @@
+import React from 'react'; export default function Home(){ return (<div><h1>Home (Run seed to see demo)</h1></div>); }

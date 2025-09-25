@@ -1,0 +1,1 @@
+import React from 'react'; export default function AllReservations(){ return (<div><h1>All Reservations</h1></div>); }

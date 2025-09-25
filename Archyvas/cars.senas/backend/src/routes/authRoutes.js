@@ -1,0 +1,2 @@
+
+import express from 'express'; import { register,login,me,listUsers,deleteUser,blockUser } from '../controllers/authController.js'; import { protect, adminOnly } from '../middleware/authMiddleware.js'; const r=express.Router(); r.post('/register',register); r.post('/login',login); r.get('/me',protect,me); r.get('/users',protect,adminOnly,listUsers); r.delete('/users/:id',protect,adminOnly,deleteUser); r.post('/users/:id/block',protect,adminOnly,blockUser); export default r;

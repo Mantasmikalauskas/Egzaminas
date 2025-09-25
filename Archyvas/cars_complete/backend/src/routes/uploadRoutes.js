@@ -1,0 +1,1 @@
+import express from 'express'; import upload from '../controllers/uploadController.js'; const router = express.Router(); router.post('/', upload.single('image'), (req,res)=>{ res.json({ imagePath: `/uploads/${req.file.filename}` }); }); export default router;

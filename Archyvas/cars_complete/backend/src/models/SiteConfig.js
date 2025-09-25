@@ -1,0 +1,1 @@
+import mongoose from 'mongoose'; const schema=new mongoose.Schema({ aboutText:String },{timestamps:true}); export default mongoose.model('SiteConfig',schema);

@@ -1,0 +1,2 @@
+
+import express from 'express'; import { listCars,getCar,createCar,updateCar,deleteCar } from '../controllers/carController.js'; import { protect, adminOnly } from '../middleware/authMiddleware.js'; const r=express.Router(); r.get('/',listCars); r.get('/:id',getCar); r.post('/',protect,adminOnly,createCar); r.put('/:id',protect,adminOnly,updateCar); r.delete('/:id',protect,adminOnly,deleteCar); export default r;
