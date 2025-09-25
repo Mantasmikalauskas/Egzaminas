@@ -1,0 +1,1 @@
+const mongoose = require('mongoose'); const schema = new mongoose.Schema({ idPlate:String, class:String, name:String, year:Number, pricePerDay:Number, withHook:{type:Boolean,default:false}, extraQuantity:{type:Number,default:0}, extraType:{type:String,default:''}, description:String, imageUrl:String }); module.exports = mongoose.model('Car', schema);

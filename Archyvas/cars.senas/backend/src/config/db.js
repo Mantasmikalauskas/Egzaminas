@@ -1,0 +1,1 @@
+import mongoose from 'mongoose'; export default async function(uri){ await mongoose.connect(uri); console.log('Mongo connected'); }

@@ -1,0 +1,1 @@
+import express from 'express'; import { getAbout, updateAbout } from '../controllers/siteController.js'; import { protect, adminOnly } from '../middleware/authMiddleware.js'; const r = express.Router(); r.get('/about', getAbout); r.put('/about', protect, adminOnly, updateAbout); export default r;

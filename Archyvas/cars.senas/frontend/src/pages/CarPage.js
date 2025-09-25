@@ -1,0 +1,1 @@
+import React from 'react'; export default function CarPage(){ return (<div><h1>Car</h1></div>); }

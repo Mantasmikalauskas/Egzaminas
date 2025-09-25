@@ -1,1 +1,0 @@
-import React from 'react'; import Reservations from './Reservations'; export default Reservations;
